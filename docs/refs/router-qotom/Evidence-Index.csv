@@ -1,0 +1,40 @@
+file,line,label,excerpt
+Homelab_Organized/01_Hardware/Computers/AI-Server/manjaro-ai-server-installation.md,43,bios_grub_examples,✅ VT-x/VT-d: Enabled (virtualization)
+Homelab_Organized/01_Hardware/Computers/AI-Server/manjaro-ai-server-installation.md,44,bios_grub_examples,✅ IOMMU: Enabled
+Homelab_Organized/01_Hardware/Computers/AI-Server/manjaro-ai-server-installation.md,45,bios_grub_examples,✅ PCIe Gen3/4: Auto or Maximum
+Homelab_Organized/01_Hardware/Computers/AI-Server/manjaro-ai-server-installation.md,331,bios_grub_examples,"GRUB_CMDLINE_LINUX_DEFAULT=""quiet splash intel_iommu=on"""
+Homelab_Organized/01_Hardware/Computers/Docker-Host/specs.md,62,nic_models,- **enp5s0**: **Intel X520-1 10GbE SFP+** (DOWN - ready for DAC/SFP+)
+Homelab_Organized/01_Hardware/Computers/Docker-Host/specs.md,65,nic_models,- **Router**: 4x Intel X553 SFP+ ports
+Homelab_Organized/01_Hardware/Computers/Docker-Host/specs.md,66,nic_models,- **NAS**: 1x Intel X520-1 SFP+ port
+Homelab_Organized/01_Hardware/Computers/Docker-Host/specs.md,67,nic_models,- **Docker**: 1x Intel X520-1 SFP+ port
+Homelab_Organized/01_Hardware/Computers/Router/deploy-opnsense.sh,660,deploy_success,"ping -c 2 8.8.8.8 && log_success ""Internet connectivity OK"" || log_error ""No internet"""
+Homelab_Organized/01_Hardware/Computers/Router/deploy-opnsense.sh,668,deploy_success,"nslookup google.com && log_success ""External DNS OK"" || log_error ""External DNS failed"""
+Homelab_Organized/01_Hardware/Computers/Router/deploy-opnsense.sh,739,deploy_success,done
+Homelab_Organized/01_Hardware/Computers/Router/hardware-summary.md,18,router_hw_status,- **Type**: DDR4 ECC (confirmed working)
+Homelab_Organized/01_Hardware/Computers/Router/hardware-summary.md,18,router_hw_status,- **Type**: DDR4 ECC (confirmed working)
+Homelab_Organized/01_Hardware/Computers/Router/hardware-summary.md,92,router_hw_status,"- **High Performance**: 8-core CPU, NVMe storage, 10GbE networking"
+Homelab_Organized/01_Hardware/Computers/Router/hardware-summary.md,94,router_hw_status,- **Production Capable**: Could handle substantial networking loads
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,113,kernel_args,# Add: intel_iommu=on iommu=pt pcie_aspm=off
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,113,kernel_args,# Add: intel_iommu=on iommu=pt pcie_aspm=off
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,113,kernel_args,# Add: intel_iommu=on iommu=pt pcie_aspm=off
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,118,vfio_modules,# Load VFIO modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,119,vfio_modules,echo 'vfio' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,120,vfio_modules,echo 'vfio_iommu_type1' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,120,vfio_modules,echo 'vfio_iommu_type1' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,121,vfio_modules,echo 'vfio_pci' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,121,vfio_modules,echo 'vfio_pci' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,122,vfio_modules,echo 'vfio_virqfd' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,122,vfio_modules,echo 'vfio_virqfd' >> /etc/modules
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,134,iommu_groups,# Check IOMMU groups
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,135,iommu_groups,"find /sys/kernel/iommu_groups/ -name ""devices"" -exec bash -c 'echo ""IOMMU Group $(basename $(dirname {}))""; cat {}' \;"
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,135,iommu_groups,"find /sys/kernel/iommu_groups/ -name ""devices"" -exec bash -c 'echo ""IOMMU Group $(basename $(dirname {}))""; cat {}' \;"
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,155,vm_baseline,├── SCSI Controller: VirtIO SCSI
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,156,vm_baseline,├── BIOS: OVMF (UEFI)
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,157,vm_baseline,├── Add EFI Disk: Yes
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,159,vm_baseline,└── Machine: q35
+Homelab_Organized/01_Hardware/Computers/Router/installation.md,162,vm_baseline,├── Bus: VirtIO Block
+Homelab_Organized/01_Hardware/Computers/Router/specs.md,4,router_specs_status,"- **CPU**: Intel Atom C3758R (8-core, 2.4GHz, 25W TDP)"
+Homelab_Organized/01_Hardware/Computers/Router/specs.md,13,router_specs_status,- **Status**: Hardware validated via Manjaro live; ready for OS install
+Homelab_Organized/01_Hardware/Computers/Router/specs.md,13,router_specs_status,- **Status**: Hardware validated via Manjaro live; ready for OS install
+Homelab_Organized/01_Hardware/Computers/Router/specs.md,15,router_specs_status,## Intel Atom C3758R Specifications
+Homelab_Organized/01_Hardware/Computers/Router/specs.md,84,router_specs_status,- Intel Atom C2000 series had clock issues (C3758R likely fixed)

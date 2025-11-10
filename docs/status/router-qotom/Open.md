@@ -1,0 +1,22 @@
+# Router: Open/TODO/Regressed markers (from files)
+
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:39 — Je vraagt welke IPTV-client het beste werkt op Manjaro. Er zijn meerdere goede opties, afhankelijk van je voorkeur voor eenvoud, open-source software, EPG-ondersteuning, of een mediacenter-ervaring. Hieronder een overzicht met de meest populaire en betrouwbare keuzes:
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:46 — - Een moderne, open-source IPTV-speler met veel functies:
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:294 — ### **Antwoord op je koppeling-vraag: Open WebUI <-> AI**
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:296 — #### **Hoe werkt de koppeling tussen Open WebUI en jouw LLM (IPEX-LLM/Ollama)?**
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:298 — - Open WebUI praat tegen een “Ollama-compatible” API op poort **11434** (`ipexllm:11434`).
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:401 — Open een terminal en voer het volgende uit:
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:463 — Open WebUI
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/ChatGPT-Router-Insights.md`:464 — Open WebUI
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/deploy-opnsense.sh`:26 — log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/deploy-opnsense.sh`:668 — nslookup google.com && log_success "External DNS OK" || log_error "External DNS failed"
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/hardware-report-discovery.txt`:120 — 00:04.0 Host bridge: Intel Corporation Atom Processor C3000 Series Error Registers (rev 11)
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:9 — Verify 32GB RAM is properly seated and detected
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:10 — Confirm 512GB M.2 NVMe is installed and recognized
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:11 — Test SFP+ network card (Q20331G9) is detected in PCIe slot
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:12 — Prepare SFP+ optics for testing (1G/10G modules)
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:13 — Connect serial console if available
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:14 — Ensure adequate power supply and cooling
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:17 — Download Proxmox VE 8.x ISO from https://www.proxmox.com/en/downloads
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:18 — Download OPNsense 24.x AMD64 ISO from https://opnsense.org/download/
+- ⏳ `Homelab_Organized/01_Hardware/Computers/Router/installation.md`:19 — Create bootable USB installer with Ventoy or dd
