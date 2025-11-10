@@ -1,0 +1,298 @@
+{
+  "vlans": {
+    "mgmt": 5,
+    "fe": 10,
+    "be": 20
+  },
+  "subnets": {
+    "fe": {
+      "cidr": "10.42.10.0/24",
+      "gw": "10.42.10.1"
+    },
+    "be": {
+      "cidr": "10.42.20.0/24",
+      "gw": "10.42.20.1"
+    },
+    "mgmt": {
+      "cidr": "10.42.5.0/24",
+      "gw": "10.42.5.1"
+    }
+  },
+  "hosts": [
+    {
+      "name": "qotom-router",
+      "fe": {
+        "mac": "REPLACE:FE:MAC:QOTOM",
+        "ip": "10.42.10.1/24"
+      },
+      "be": {
+        "mac": "REPLACE:BE:MAC:QOTOM",
+        "ip": "10.42.20.1/24",
+        "mtu": 9000
+      }
+    },
+    {
+      "name": "hx310-db",
+      "fe": {
+        "mac": "REPLACE:FE:MAC:DB",
+        "ip": "10.42.10.20/24"
+      },
+      "be": {
+        "mac": "REPLACE:BE:MAC:DB",
+        "ip": "10.42.20.20/24",
+        "mtu": 1500
+      }
+    },
+    {
+      "name": "hx310-arr",
+      "fe": {
+        "mac": "REPLACE:FE:MAC:ARR",
+        "ip": "10.42.10.21/24"
+      },
+      "be": {
+        "mac": "REPLACE:BE:MAC:ARR",
+        "ip": "10.42.20.21/24",
+        "mtu": 1500
+      }
+    }
+  ],
+  "dns": [
+    {
+      "name": "wiki.home.lab",
+      "ip": "10.42.10.50"
+    },
+    {
+      "name": "vault.home.lab",
+      "ip": "10.42.10.51"
+    },
+    {
+      "name": "git.home.lab",
+      "ip": "10.42.10.52"
+    },
+    {
+      "name": "netboot.home.lab",
+      "ip": "10.42.10.9"
+    }
+  ],
+  "uids": {
+    "svc-db": 21010,
+    "svc-web": 21020,
+    "svc-media": 21030,
+    "postgres": 999
+  },
+  "gids": {
+    "svc-db": 21010,
+    "svc-web": 21020,
+    "svc-media": 21030,
+    "postgres": 999
+  },
+  "paths": [
+    {
+      "path": "/srv/containers",
+      "mode": "2755",
+      "user": "root",
+      "group": "root"
+    },
+    {
+      "path": "/srv/containers/postgres",
+      "mode": "2750",
+      "user": "postgres",
+      "group": "postgres"
+    },
+    {
+      "path": "/srv/containers/wikijs",
+      "mode": "2775",
+      "user": "20020",
+      "group": "21020"
+    },
+    {
+      "path": "/srv/containers/traefik",
+      "mode": "2775",
+      "user": "20021",
+      "group": "21020"
+    },
+    {
+      "path": "/srv/containers/vault",
+      "mode": "2775",
+      "user": "20022",
+      "group": "21020"
+    },
+    {
+      "path": "/srv/containers/gitea",
+      "mode": "2775",
+      "user": "20023",
+      "group": "21020"
+    },
+    {
+      "path": "/srv/containers/netboot",
+      "mode": "2775",
+      "user": "20024",
+      "group": "21020"
+    },
+    {
+      "path": "/srv/containers/arr",
+      "mode": "2775",
+      "user": "20030",
+      "group": "21030"
+    },
+    {
+      "path": "/srv/downloads",
+      "mode": "2775",
+      "user": "20030",
+      "group": "21030"
+    },
+    {
+      "path": "/srv/media",
+      "mode": "2775",
+      "user": "20030",
+      "group": "21030"
+    }
+  ],
+  "containers": {
+    "qotom-router": [
+      {
+        "name": "netbootxyz",
+        "image": "lscr.io/linuxserver/netbootxyz",
+        "user": "20024:21020",
+        "net": "fe",
+        "ip": "10.42.10.9",
+        "vols": [
+          "/srv/containers/netboot:/config"
+        ]
+      }
+    ],
+    "hx310-db": [
+      {
+        "name": "postgres16",
+        "image": "postgres:16",
+        "user": "999:999",
+        "net": "be",
+        "ip": "10.42.20.20",
+        "vols": [
+          "/srv/containers/postgres:/var/lib/postgresql/data"
+        ]
+      },
+      {
+        "name": "vaultwarden",
+        "image": "vaultwarden/server:latest",
+        "user": "20022:21020",
+        "net": "fe",
+        "ip": "10.42.10.51",
+        "vols": [
+          "/srv/containers/vault:/data"
+        ]
+      },
+      {
+        "name": "gitea",
+        "image": "gitea/gitea:1.22",
+        "user": "20023:21020",
+        "net": "fe",
+        "ip": "10.42.10.52",
+        "vols": [
+          "/srv/containers/gitea:/data"
+        ]
+      },
+      {
+        "name": "wikijs",
+        "image": "requarks/wiki:2",
+        "user": "20020:21020",
+        "net": "dual",
+        "ip_fe": "10.42.10.50",
+        "ip_be": "10.42.20.50",
+        "vols": [
+          "/srv/containers/wikijs:/data"
+        ]
+      }
+    ],
+    "hx310-arr": [
+      {
+        "name": "radarr",
+        "image": "lscr.io/linuxserver/radarr",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.60",
+        "vols": [
+          "/srv/containers/arr/radarr:/config",
+          "/srv/downloads:/downloads",
+          "/srv/media:/media"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      },
+      {
+        "name": "sonarr",
+        "image": "lscr.io/linuxserver/sonarr",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.61",
+        "vols": [
+          "/srv/containers/arr/sonarr:/config",
+          "/srv/downloads:/downloads",
+          "/srv/media:/media"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      },
+      {
+        "name": "lidarr",
+        "image": "lscr.io/linuxserver/lidarr",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.62",
+        "vols": [
+          "/srv/containers/arr/lidarr:/config",
+          "/srv/downloads:/downloads",
+          "/srv/media:/media"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      },
+      {
+        "name": "whisparr",
+        "image": "lscr.io/linuxserver/whisparr",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.63",
+        "vols": [
+          "/srv/containers/arr/whisparr:/config",
+          "/srv/downloads:/downloads",
+          "/srv/media:/media"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      },
+      {
+        "name": "prowlarr",
+        "image": "lscr.io/linuxserver/prowlarr",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.64",
+        "vols": [
+          "/srv/containers/arr/prowlarr:/config"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      },
+      {
+        "name": "kapowarr",
+        "image": "mrcas/kapowarr:latest",
+        "user": "20030:21030",
+        "net": "fe",
+        "ip": "10.42.10.65",
+        "vols": [
+          "/srv/containers/arr/kapowarr:/config",
+          "/srv/downloads:/downloads",
+          "/srv/media:/media"
+        ],
+        "env": {
+          "TZ": "Europe/Amsterdam"
+        }
+      }
+    ]
+  }
+}
