@@ -1,0 +1,30 @@
+<!-- Serial-first libvirt XML (BIOS). Replace PCI addresses and disk paths as needed. -->
+<domain type='kvm'>
+  <name>opnsense</name>
+  <memory unit='MiB'>2048</memory>
+  <vcpu>2</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-q35-9.0'>hvm</type>
+  </os>
+  <features><acpi/><apic/></features>
+  <cpu mode='host-passthrough'/>
+  <devices>
+    <emulator>/run/current-system/sw/bin/qemu-system-x86_64</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/>
+      <source file='/var/lib/libvirt/images/opnsense.qcow2'/>
+      <target dev='vda' bus='virtio'/>
+    </disk>
+    <!-- Passthrough NICs -->
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source><address domain='0x0000' bus='0x81' slot='0x00' function='0x0'/></source>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source><address domain='0x0000' bus='0x81' slot='0x00' function='0x1'/></source>
+    </hostdev>
+    <!-- Serial console -->
+    <console type='pty'><target type='serial' port='0'/></console>
+    <serial type='pty'><target type='isa-serial' port='0'/></serial>
+    <graphics type='none'/>
+  </devices>
+</domain>
